@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Marcas</h2>
+
+    <a href="{% url 'incluir_marca' %}" 
+        class="btn btn-primary">Incluir nova marca</a>
+    <table>
+        <thead>
+            <tr>
+                <td>Nome</td>
+                <td>Ações</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for m in marcas %}
+            <tr>
+                <td>{{ m.nome }}</td>
+                <td>
+                    <a href="{% url 'alterar_marca' m.id %}" 
+                        class="btn btn-primary">Alterar</a> 
+                    <a href="{% url 'excluir_marca' m.id %}"
+                        class="btn btn-danger">
+                        Excluir
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

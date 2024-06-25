@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+    <form method="post">
+        {% bootstrap_form form %}
+        {% csrf_token %}
+        <input type="submit" class="btn btn-primary" 
+            value="Gravar" />
+        <input type="reset" class="btn btn-secondary"
+            value="Limpar" />
+    </form>
+{% endblock %}
