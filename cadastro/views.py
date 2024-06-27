@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, redirect
-from cadastro.forms import MarcaForm
+from cadastro.forms import ClienteForm, MarcaForm
 
 from cadastro.models import Cliente, Marca
 
@@ -44,6 +44,36 @@ def listarClientes(request):
     clientes = Cliente.objects.order_by('nome')
     return render(request, 'clientes/lista.html', 
         {'clientes': clientes} )
+
+def incluirCliente(request):
+    if request.method == "POST":
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_clientes')
+    form = ClienteForm()
+    return render(request, 'clientes/form_cliente.html',
+        {'form': form})
+
+def alterarCliente(request, id):
+    cli = Cliente.objects.get(id=id)
+    if request.method == 'POST':
+        form = ClienteForm(request.POST, instance=cli)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_clientes')
+
+    form = ClienteForm(instance= cli)
+    return render(request, 'clientes/form_cliente.html',
+        {'form': form})
+
+def excluirCliente(request, id):
+    cli = Cliente.objects.get(id=id)
+    try:
+        cli.delete()
+    except:
+        pass
+    return redirect('listar_clientes')
 
 def index(request):
     return render(request, 'index.html')

@@ -18,4 +18,11 @@ urlpatterns = [
     # Clientes
     path('/listar_clientes', views.listarClientes,
         name='listar_clientes'),
+    path('/incluir_cliente', views.incluirCliente,
+        name="incluir_cliente"),
+    path('/alterar_cliente/<int:id>', views.alterarCliente,
+        name='alterar_cliente'),
+    path('/excluir_cliente/<int:id>', views.excluirCliente,
+        name="excluir_cliente"),
+
 ]

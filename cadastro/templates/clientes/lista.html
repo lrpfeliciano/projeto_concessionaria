@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
     <h2>Clientes</h2>
+    <a href="{% url 'incluir_cliente' %}"
+        class="btn btn-primary">Incluir novo cliente</a>
     <table>
         <thead>
             <tr>
@@ -16,7 +18,12 @@
                 <td>{{ c.nome }}</td>
                 <td>{{ c.telefone }}</td>
                 <td>{{ c.email }}</td>
-                <td>Alterar Excluir</td>
+                <td>
+                    <a href="{% url 'alterar_cliente' c.id %}"
+                        class="btn btn-primary">Alterar</a> 
+                    <a href="{% url 'excluir_cliente' c.id %}"    
+                        class="btn btn-danger">Excluir</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
