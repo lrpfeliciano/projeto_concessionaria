@@ -3,7 +3,7 @@
     <h2>Clientes</h2>
     <a href="{% url 'incluir_cliente' %}"
         class="btn btn-primary">Incluir novo cliente</a>
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <td>Nome</td>
@@ -21,7 +21,8 @@
                 <td>
                     <a href="{% url 'alterar_cliente' c.id %}"
                         class="btn btn-primary">Alterar</a> 
-                    <a href="{% url 'excluir_cliente' c.id %}"    
+                    <a href="#"    
+                        onclick="abrirTela('{% url 'excluir_cliente' c.id %}')"
                         class="btn btn-danger">Excluir</a>
                 </td>
             </tr>

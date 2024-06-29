@@ -3,8 +3,11 @@ from django.shortcuts import render, redirect
 from cadastro.forms import ClienteForm, MarcaForm
 
 from cadastro.models import Cliente, Marca
-
+from django.http import HttpResponse
 # Create your views here.
+def exemplo(request):
+    html = '<html><head></head><body></body></html>'
+    return HttpResponse("<h2>Isso é um exemplo</h2>")
 
 def listarMarcas(request):
     marcas = Marca.objects.order_by('nome') 

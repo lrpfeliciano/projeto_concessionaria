@@ -4,7 +4,7 @@
 
     <a href="{% url 'incluir_marca' %}" 
         class="btn btn-primary">Incluir nova marca</a>
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <td>Nome</td>
@@ -18,7 +18,8 @@
                 <td>
                     <a href="{% url 'alterar_marca' m.id %}" 
                         class="btn btn-primary">Alterar</a> 
-                    <a href="{% url 'excluir_marca' m.id %}"
+                    <a href="#"
+                        onclick="abrirTela('{% url 'excluir_marca' m.id %}')"
                         class="btn btn-danger">
                         Excluir
                     </a>

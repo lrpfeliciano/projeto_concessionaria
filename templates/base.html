@@ -6,14 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     {% load django_bootstrap5 %}
+    {% load static %}
 
+    <link rel="stylesheet" href="{% static 'estilo.css' %}">
     {% bootstrap_css %}
 </head>
 <body>
-    <a href="{% url 'listar_marcas' %}">Marca</a>  Modelo Veículo
-    <a href="{% url 'listar_clientes' %}">Clientes</a>
-    {% block content %}
-    {% endblock %}
+
+    {% include 'menu.html' %}
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    {% include 'modal.html' %}
+
 </body>
     {% bootstrap_javascript %}
 </html>
