@@ -26,4 +26,14 @@ urlpatterns = [
     path('/excluir_cliente/<int:id>', views.excluirCliente,
         name="excluir_cliente"),
 
+    # Modelos
+    path('/listar_modelos', views.listarModelos,
+        name='listar_modelos'),
+    path('/incluir_modelo', views.incluirModelo,
+        name='incluir_modelo'),
+    path('/alterar_modelo/<int:id>', views.alterarModelo,
+        name='alterar_modelo'),
+    path('/excluir_modelo/<int:id>', views.excluirModelo,
+        name='excluir_modelo'),
+
 ]

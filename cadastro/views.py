@@ -1,8 +1,8 @@
 
 from django.shortcuts import render, redirect
-from cadastro.forms import ClienteForm, MarcaForm
+from cadastro.forms import ClienteForm, MarcaForm, ModeloForm
 
-from cadastro.models import Cliente, Marca
+from cadastro.models import Cliente, Marca, Modelo
 from django.http import HttpResponse
 # Create your views here.
 def exemplo(request):
@@ -77,6 +77,40 @@ def excluirCliente(request, id):
     except:
         pass
     return redirect('listar_clientes')
+
+def listarModelos(request):
+    modelos = Modelo.objects.order_by('nome')
+    return render(request, 'modelos/lista.html', 
+        {'modelos': modelos})
+
+def incluirModelo(request):
+    if request.method == 'POST':
+        form = ModeloForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_modelos')
+    form = ModeloForm()
+    return render(request, 'modelos/form.html', {'form': form})
+    
+def alterarModelo(request, id):
+    m = Modelo.objects.get(id=id)
+    if request.method == "POST":
+        form = ModeloForm(request.POST, instance=m)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_modelos')
+
+    form = ModeloForm(instance=m)
+    return render(request, 'modelos/form.html', 
+        {'form':form})
+
+def excluirModelo(request, id):
+    m = Modelo.objects.get(id=id)
+    try:
+        m.delete()
+    except:
+        pass
+    return redirect('listar_modelos')
 
 def index(request):
     return render(request, 'index.html')
