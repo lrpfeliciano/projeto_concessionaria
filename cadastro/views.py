@@ -4,6 +4,8 @@ from cadastro.forms import ClienteForm, MarcaForm, ModeloForm
 
 from cadastro.models import Cliente, Marca, Modelo
 from django.http import HttpResponse
+from django.contrib import messages
+
 # Create your views here.
 def exemplo(request):
     html = '<html><head></head><body></body></html>'
@@ -40,7 +42,9 @@ def excluirMarca(request, id):
     try:
         marca.delete()
     except:
-        pass
+        messages.error(request, "Não foi possível excluir devido a associações.")
+        messages.error(request, "Deu ruim.")
+        messages.info(request, "Entre em contato com o suporte")
     return redirect("listar_marcas")
 
 def listarClientes(request):
